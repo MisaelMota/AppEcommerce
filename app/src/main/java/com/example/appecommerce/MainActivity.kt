@@ -19,6 +19,8 @@ class MainActivity : ComponentActivity() {
             AppEcommerceTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
+
+
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
@@ -42,5 +44,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 fun GreetingPreview() {
     AppEcommerceTheme {
         Greeting("Android")
+
+
     }
 }
