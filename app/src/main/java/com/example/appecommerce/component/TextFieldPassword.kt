@@ -1,10 +1,11 @@
-package com.example.appecommerce.screen
+package com.example.appecommerce.component
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,6 +24,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -38,43 +40,34 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.appecommerce.R
-import com.example.appecommerce.component.ButtonBase
-import com.example.appecommerce.component.LogoApp
-import com.example.appecommerce.component.TextClick
-import com.example.appecommerce.component.TextFieldBase
-import com.example.appecommerce.component.TextFieldPassword
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@Preview(showBackground = true)
 @Composable
-fun LoginScreen() {
-    val emailValue = remember { mutableStateOf("") }
-    val passwordValue = remember { mutableStateOf("") }
-    val passwordVisible = remember { mutableStateOf(false) }
-
-    Scaffold(containerColor = MaterialTheme.colorScheme.background)
-    {
-        LazyColumn(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
-        ) {
-            item {
-                LogoApp()
-                Spacer(modifier = Modifier.padding(20.dp))
-                TextFieldBase("Correo",emailValue)
-                Spacer(modifier = Modifier.padding(10.dp))
-                TextFieldPassword("Contraseña",passwordValue,passwordVisible)
-                Spacer(modifier = Modifier.padding(20.dp))
-                ButtonBase("Iniciar sesión",onClick={})
-                Spacer(modifier = Modifier.padding(20.dp))
-                TextClick("Crear cuenta", onClick = {})
+fun TextFieldPassword(text:String,textValue:MutableState<String>,passwordVisible:MutableState<Boolean>) {
+    OutlinedTextField(
+        value = textValue.value,
+        onValueChange = { textValue.value = it },
+        trailingIcon = {
+            IconButton(onClick = { passwordVisible.value = !passwordVisible.value }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.baseline_remove_red_eye_24),
+                    tint = if (passwordVisible.value) MaterialTheme.colorScheme.primary else Color.Gray,
+                    contentDescription = ""
+                )
 
             }
-        }
-    }
+        },
+        label = {
+            Text(
+                text = text,
+                color = MaterialTheme.colorScheme.onBackground
+            )
+        },
+        singleLine = true,
+        visualTransformation = if (passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation()
+    )
+
 
 }

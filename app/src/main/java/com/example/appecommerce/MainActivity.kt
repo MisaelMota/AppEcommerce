@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.appecommerce.screen.LoginScreen
+import com.example.appecommerce.screen.SignUpSreen
 import com.example.appecommerce.ui.theme.AppEcommerceTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                        LoginScreen()
+                    SignUpSreen()
                 }
             }
         }

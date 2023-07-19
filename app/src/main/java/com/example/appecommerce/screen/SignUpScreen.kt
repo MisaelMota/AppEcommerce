@@ -49,10 +49,14 @@ import com.example.appecommerce.component.TextFieldPassword
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Preview(showBackground = true)
 @Composable
-fun LoginScreen() {
+fun SignUpSreen() {
+    val nameValue = remember { mutableStateOf("")}
     val emailValue = remember { mutableStateOf("") }
+    val phoneValue = remember { mutableStateOf("")}
     val passwordValue = remember { mutableStateOf("") }
     val passwordVisible = remember { mutableStateOf(false) }
+    val passwordConfirmValue = remember { mutableStateOf("") }
+    val passwordConfirmVisible = remember { mutableStateOf(false) }
 
     Scaffold(containerColor = MaterialTheme.colorScheme.background)
     {
@@ -65,13 +69,20 @@ fun LoginScreen() {
             item {
                 LogoApp()
                 Spacer(modifier = Modifier.padding(20.dp))
+                TextFieldBase("Nombre",nameValue)
+                Spacer(modifier = Modifier.padding(5.dp))
                 TextFieldBase("Correo",emailValue)
-                Spacer(modifier = Modifier.padding(10.dp))
+                Spacer(modifier = Modifier.padding(5.dp))
+                TextFieldBase("Telefono",phoneValue)
+                Spacer(modifier = Modifier.padding(5.dp))
                 TextFieldPassword("Contraseña",passwordValue,passwordVisible)
+                Spacer(modifier = Modifier.padding(5.dp))
+                TextFieldPassword("Confirmar Contraseña",passwordConfirmValue,passwordConfirmVisible)
                 Spacer(modifier = Modifier.padding(20.dp))
-                ButtonBase("Iniciar sesión",onClick={})
-                Spacer(modifier = Modifier.padding(20.dp))
-                TextClick("Crear cuenta", onClick = {})
+                ButtonBase("Registrar",onClick={})
+                Spacer(modifier = Modifier.padding(5.dp))
+                TextClick("Iniciar sesion", onClick = {})
+
 
             }
         }
